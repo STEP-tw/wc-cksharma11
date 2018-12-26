@@ -1,10 +1,12 @@
 const { SPACE, HYPHEN, EMPTYSTRING } = require('./constants.js');
 
 const mapOptions = function(option) {
-  let mappedOption = option.replace('-l', 'lineCount');
-  mappedOption = mappedOption.replace('-w', 'wordCount');
-  mappedOption = mappedOption.replace('-c', 'charCount');
-  return mappedOption;
+  const longOptions = {
+    '-l': 'lineCount',
+    '-w': 'wordCount',
+    '-c': 'charCount'
+  };
+  return longOptions[option];
 };
 
 const joinAndSplitBySpace = function(text) {
