@@ -25,9 +25,9 @@ const filterFilenames = function(args) {
 };
 
 const parse = function(args) {
-  const seperatedArgs = joinAndSplitBySpace(args);
-  const filenames = filterFilenames(seperatedArgs);
-  const options = filterOptions(seperatedArgs).map(x => {
+  const separatedArgs = joinAndSplitBySpace(args);
+  const filenames = filterFilenames(separatedArgs);
+  const options = filterOptions(separatedArgs).map(x => {
     return mapOptions(x);
   });
 
