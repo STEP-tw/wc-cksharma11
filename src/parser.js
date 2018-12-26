@@ -1,13 +1,27 @@
-const parse = function(args) {
-  const seperatedArgs = args.join(' ').split(' ');
-  const filenames = seperatedArgs.filter(x => !x.startsWith('-'));
-  let options = seperatedArgs.filter(x => x.startsWith('-'));
+const mapOptions = function(option) {
+  let mappedOption = option.replace('-l', 'lineCount');
+  mappedOption = mappedOption.replace('-w', 'wordCount');
+  mappedOption = mappedOption.replace('-c', 'charCount');
+  return mappedOption;
+};
 
-  options = options.map(x => {
-    let option = x.replace('-l', 'lineCount');
-    option = option.replace('-w', 'wordCount');
-    option = option.replace('-c', 'charCount');
-    return option;
+const joinBySpace = function(text) {
+  return text.join(' ').split(' ');
+};
+
+const filterOptions = function(args) {
+  return args.filter(x => x.startsWith('-'));
+};
+
+const filterFilenames = function(args) {
+  return args.filter(x => !x.startsWith('-'));
+};
+
+const parse = function(args) {
+  const seperatedArgs = joinBySpace(args);
+  const filenames = filterFilenames(seperatedArgs);
+  let options = filterOptions(seperatedArgs).map(x => {
+    return mapOptions(x);
   });
 
   return { filenames, options };
