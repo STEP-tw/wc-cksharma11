@@ -34,7 +34,10 @@ describe('parse', () => {
 
   it('should give option and filename when no option provided', () => {
     const args = ['file'];
-    const expectedOutput = { filenames: ['file'], options: [] };
+    const expectedOutput = {
+      filenames: ['file'],
+      options: ['lineCount', 'wordCount', 'charCount']
+    };
     const actualOutput = parse(args);
 
     assert.deepEqual(actualOutput, expectedOutput);

@@ -19,6 +19,9 @@ const filterOptions = function(args) {
     options = options[0].split(EMPTYSTRING).slice(1);
     return options.map(option => HYPHEN + option);
   }
+  if (options.length == 0) {
+    return ['-l', '-w', '-c'];
+  }
   return options;
 };
 
