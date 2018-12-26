@@ -50,4 +50,26 @@ describe('parse', () => {
 
     assert.deepEqual(actualOutput, expectedOutput);
   });
+
+  it('should parse when two options are together. i.e: -lw', () => {
+    const args = ['-lw', 'file'];
+    const expectedOutput = {
+      filenames: ['file'],
+      options: ['lineCount', 'wordCount']
+    };
+    const actualOutput = parse(args);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it('should parse when all options are together. i.e: -lwc', () => {
+    const args = ['-lwc', 'file', 'file2'];
+    const expectedOutput = {
+      filenames: ['file', 'file2'],
+      options: ['lineCount', 'wordCount', 'charCount']
+    };
+    const actualOutput = parse(args);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
 });

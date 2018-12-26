@@ -1,3 +1,6 @@
+const SPACE = ' ';
+const HYPHEN = '-';
+
 const mapOptions = function(option) {
   let mappedOption = option.replace('-l', 'lineCount');
   mappedOption = mappedOption.replace('-w', 'wordCount');
@@ -5,22 +8,27 @@ const mapOptions = function(option) {
   return mappedOption;
 };
 
-const joinBySpace = function(text) {
-  return text.join(' ').split(' ');
+const joinAndSplitBySpace = function(text) {
+  return text.join(SPACE).split(SPACE);
 };
 
 const filterOptions = function(args) {
-  return args.filter(x => x.startsWith('-'));
+  let options = args.filter(x => x.startsWith(HYPHEN));
+  if (options.length == 1) {
+    options = options[0].split('').slice(1);
+    return options.map(x => HYPHEN + x);
+  }
+  return options;
 };
 
 const filterFilenames = function(args) {
-  return args.filter(x => !x.startsWith('-'));
+  return args.filter(x => !x.startsWith(HYPHEN));
 };
 
 const parse = function(args) {
-  const seperatedArgs = joinBySpace(args);
+  const seperatedArgs = joinAndSplitBySpace(args);
   const filenames = filterFilenames(seperatedArgs);
-  let options = filterOptions(seperatedArgs).map(x => {
+  const options = filterOptions(seperatedArgs).map(x => {
     return mapOptions(x);
   });
 
