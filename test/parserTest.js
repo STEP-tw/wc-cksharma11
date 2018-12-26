@@ -39,4 +39,15 @@ describe('parse', () => {
 
     assert.deepEqual(actualOutput, expectedOutput);
   });
+
+  it('should give option and filename when num of file > 1', () => {
+    const args = ['-l', 'file', 'file2'];
+    const expectedOutput = {
+      filenames: ['file', 'file2'],
+      options: ['lineCount']
+    };
+    const actualOutput = parse(args);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
 });
