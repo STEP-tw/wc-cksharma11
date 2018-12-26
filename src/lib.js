@@ -6,11 +6,7 @@ const getLineCount = function(content) {
 };
 
 const getWordCount = function(content) {
-  return content
-    .split(NEWLINE)
-    .join(SPACE)
-    .split(SPACE)
-    .filter(x => x != '').length;
+  return content.trimRight().split(/[ \n]+/).length;
 };
 
 const getCharCount = function(content) {
