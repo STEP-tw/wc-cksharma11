@@ -1,5 +1,4 @@
 const NEWLINE = '\n';
-const SPACE = ' ';
 
 const getLineCount = function(content) {
   return content.split(NEWLINE).length - 1;
