@@ -1,12 +1,12 @@
 const { SPACE, HYPHEN, EMPTYSTRING } = require('./constants.js');
 
 const mapOptions = function(option) {
-  const longOptions = {
+  const optionsMapping = {
     '-l': 'lineCount',
     '-w': 'wordCount',
     '-c': 'charCount'
   };
-  return longOptions[option];
+  return optionsMapping[option];
 };
 
 const joinAndSplitBySpace = function(text) {
@@ -14,23 +14,23 @@ const joinAndSplitBySpace = function(text) {
 };
 
 const filterOptions = function(args) {
-  let options = args.filter(x => x.startsWith(HYPHEN));
+  let options = args.filter(arg => arg.startsWith(HYPHEN));
   if (options.length == 1) {
     options = options[0].split(EMPTYSTRING).slice(1);
-    return options.map(x => HYPHEN + x);
+    return options.map(option => HYPHEN + option);
   }
   return options;
 };
 
 const filterFilenames = function(args) {
-  return args.filter(x => !x.startsWith(HYPHEN));
+  return args.filter(arg => !arg.startsWith(HYPHEN));
 };
 
 const parse = function(args) {
   const separatedArgs = joinAndSplitBySpace(args);
   const filenames = filterFilenames(separatedArgs);
-  const options = filterOptions(separatedArgs).map(x => {
-    return mapOptions(x);
+  const options = filterOptions(separatedArgs).map(option => {
+    return mapOptions(option);
   });
 
   return { filenames, options };
