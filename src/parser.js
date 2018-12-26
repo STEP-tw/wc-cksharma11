@@ -1,11 +1,16 @@
 const parse = function(args) {
-  let filename = args[0];
-  options = [];
-  if (args.length > 1) {
-    filename = args[1];
-    options = ['lineCount'];
-  }
-  return { filename, options };
+  const seperatedArgs = args.join(' ').split(' ');
+  const filenames = seperatedArgs.filter(x => !x.startsWith('-'));
+  let options = seperatedArgs.filter(x => x.startsWith('-'));
+
+  options = options.map(x => {
+    let option = x.replace('-l', 'lineCount');
+    option = option.replace('-w', 'wordCount');
+    option = option.replace('-c', 'charCount');
+    return option;
+  });
+
+  return { filenames, options };
 };
 
 module.exports = {
