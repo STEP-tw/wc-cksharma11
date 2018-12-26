@@ -1,4 +1,5 @@
 const NEWLINE = '\n';
+const EMPTYSTRING = '';
 
 const getLineCount = function(content) {
   return content.split(NEWLINE).length - 1;
@@ -9,7 +10,7 @@ const getWordCount = function(content) {
 };
 
 const getCharCount = function(content) {
-  return content.split('').length;
+  return content.split(EMPTYSTRING).length;
 };
 
 const wc = function(filename, fs) {
