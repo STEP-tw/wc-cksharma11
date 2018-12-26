@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { format } = require('../src/format.js');
+const { format, TAB } = require('../src/format.js');
 
 describe('format', () => {
   it('should give formatted output', () => {
@@ -7,9 +7,12 @@ describe('format', () => {
     const wordCount = 1;
     const charCount = 1;
     const filename = 'testfile';
+
     const args = { lineCount, wordCount, charCount, filename };
-    const expectedOutput =
-      '\t' + lineCount + '\t' + wordCount + '\t' + charCount + '\t' + filename;
+
+    const expectedOutput = ['', lineCount, wordCount, charCount, filename].join(
+      TAB
+    );
     const actualOutput = format(args);
 
     assert.deepEqual(actualOutput, expectedOutput);

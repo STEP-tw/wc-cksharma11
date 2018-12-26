@@ -2,9 +2,10 @@ const TAB = '\t';
 
 const format = function(result) {
   const { lineCount, wordCount, charCount, filename } = result;
-  return TAB + lineCount + TAB + wordCount + TAB + charCount + TAB + filename;
+  return ['', lineCount, wordCount, charCount, filename].join(TAB);
 };
 
 module.exports = {
-  format
+  format,
+  TAB
 };
