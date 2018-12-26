@@ -1,13 +1,13 @@
 const { TAB } = require('./constants.js');
 
-const formatWithOneOption = function(result, options) {
-  const count = result[options[0]];
+const formatWithOneOption = function(result, [option]) {
+  const count = result[option];
   return ['', count, result.filename].join(TAB);
 };
 
-const formatWithTwoOption = function(result, options) {
-  const count1 = result[options[0]];
-  const count2 = result[options[1]];
+const formatWithTwoOption = function(result, [firstOption, secondOption]) {
+  const count1 = result[firstOption];
+  const count2 = result[secondOption];
   return ['', count1, count2, result.filename].join(TAB);
 };
 

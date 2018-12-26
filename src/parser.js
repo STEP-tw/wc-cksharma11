@@ -1,4 +1,4 @@
-const { SPACE, HYPHEN } = require('./constants.js');
+const { SPACE, HYPHEN, EMPTYSTRING } = require('./constants.js');
 
 const mapOptions = function(option) {
   let mappedOption = option.replace('-l', 'lineCount');
@@ -14,7 +14,7 @@ const joinAndSplitBySpace = function(text) {
 const filterOptions = function(args) {
   let options = args.filter(x => x.startsWith(HYPHEN));
   if (options.length == 1) {
-    options = options[0].split('').slice(1);
+    options = options[0].split(EMPTYSTRING).slice(1);
     return options.map(x => HYPHEN + x);
   }
   return options;
