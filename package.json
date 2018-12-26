@@ -1,0 +1,22 @@
+{
+  "name": "wc-cksharma11",
+  "version": "1.0.0",
+  "description": "Simple node version of wc",
+  "main": "wc.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STEP-tw/wc-cksharma11.git"
+  },
+  "author": "Chandan Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/STEP-tw/wc-cksharma11/issues"
+  },
+  "homepage": "https://github.com/STEP-tw/wc-cksharma11#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
