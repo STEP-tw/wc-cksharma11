@@ -1,4 +1,4 @@
-const TAB = '\t';
+const { TAB } = require('./constants.js');
 
 const formatWithOneOption = function(result, options) {
   const count = result[options[0]];
@@ -27,6 +27,5 @@ const getFormatter = function(options) {
 };
 
 module.exports = {
-  getFormatter,
-  TAB
+  getFormatter
 };

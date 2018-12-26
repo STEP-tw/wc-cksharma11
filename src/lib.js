@@ -1,5 +1,4 @@
-const NEWLINE = '\n';
-const EMPTYSTRING = '';
+const { NEWLINE, EMPTYSTRING } = require('./constants.js');
 
 const getLineCount = function(content) {
   return content.split(NEWLINE).length - 1;

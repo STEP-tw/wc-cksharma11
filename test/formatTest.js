@@ -1,5 +1,6 @@
 const assert = require('assert');
-const { getFormatter, TAB } = require('../src/format.js');
+const { getFormatter } = require('../src/format.js');
+const { TAB } = require('../src/constants.js');
 
 describe('format', () => {
   const lineCount = 1;

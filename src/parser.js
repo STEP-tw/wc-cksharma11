@@ -1,5 +1,4 @@
-const SPACE = ' ';
-const HYPHEN = '-';
+const { SPACE, HYPHEN } = require('./constants.js');
 
 const mapOptions = function(option) {
   let mappedOption = option.replace('-l', 'lineCount');
