@@ -1,4 +1,11 @@
-const { TAB, EMPTYSTRING } = require('./constants.js');
+const {
+  TAB,
+  NEWLINE,
+  TOTAL,
+  LINECOUNT,
+  WORDCOUNT,
+  CHARCOUNT
+} = require('./constants.js');
 
 const format = function(result, options) {
   const sortedOptions = sortOptions(options);
@@ -14,7 +21,7 @@ const multipleFileFormatter = function(result, options) {
   const sumOfCounts = result.reduce(sumCounts);
   const allCounts = result.map(counts => format(counts, options));
   allCounts.push(format(sumOfCounts, options));
-  return allCounts.join('\n');
+  return allCounts.join(NEWLINE);
 };
 
 const sumCounts = function(count1, count2) {
@@ -22,7 +29,7 @@ const sumCounts = function(count1, count2) {
     lineCount: count1.lineCount + count2.lineCount,
     wordCount: count1.wordCount + count2.wordCount,
     charCount: count1.charCount + count2.charCount,
-    filename: 'total'
+    filename: TOTAL
   };
 };
 
@@ -34,7 +41,7 @@ const getFormatter = function(files) {
 };
 
 const sortOptions = function(options) {
-  const sortedOptions = ['lineCount', 'wordCount', 'charCount'];
+  const sortedOptions = [LINECOUNT, WORDCOUNT, CHARCOUNT];
   return sortedOptions.filter(option => options.includes(option));
 };
 
