@@ -12,13 +12,22 @@ const getCharCount = function(content) {
   return content.split(EMPTYSTRING).length;
 };
 
-const wc = function(filename, fs) {
-  const content = fs.readFileSync(filename, 'utf8');
-  const lineCount = getLineCount(content);
-  const wordCount = getWordCount(content);
-  const charCount = getCharCount(content);
+const getFileContent = function(filenames, fs) {
+  return filenames.map(filename => [
+    fs.readFileSync(filename, 'utf8'),
+    filename
+  ]);
+};
 
-  return { lineCount, wordCount, charCount, filename: filename };
+const wc = function(filenames, fs) {
+  const content = getFileContent(filenames, fs);
+  return content.map(([content, filename]) => {
+    const lineCount = getLineCount(content);
+    const wordCount = getWordCount(content);
+    const charCount = getCharCount(content);
+
+    return { lineCount, wordCount, charCount, filename: filename };
+  });
 };
 
 module.exports = {
