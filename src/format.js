@@ -5,16 +5,17 @@ const format = function(result, options) {
   const counts = sortedOptions.map(option => {
     return TAB + result[option];
   });
-
   return counts.join(EMPTYSTRING) + TAB + result.filename;
 };
 
-const formatMultipleFile = function(result, options) {
-  if (result.length == 1) {
-    return format(result[0], options);
-  }
-  result.push(result.reduce(sumCounts));
+const singleFileFormatter = function(result, options) {
+  return format(result[0], options);
+};
+
+const multipleFileFormatter = function(result, options) {
+  const sumOfCounts = result.reduce(sumCounts);
   const allCounts = result.map(counts => format(counts, options));
+  allCounts.push(format(sumOfCounts, options));
   return allCounts.join('\n');
 };
 
@@ -27,12 +28,18 @@ const sumCounts = function(count1, count2) {
   };
 };
 
+const getFormatter = function(files) {
+  if (files.length == 1) {
+    return singleFileFormatter;
+  }
+  return multipleFileFormatter;
+};
+
 const sortOptions = function(options) {
   const sortedOptions = ['lineCount', 'wordCount', 'charCount'];
   return sortedOptions.filter(option => options.includes(option));
 };
 
 module.exports = {
-  format,
-  formatMultipleFile
+  getFormatter
 };
