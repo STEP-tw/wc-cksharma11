@@ -1,9 +1,15 @@
-const { SPACE, HYPHEN, EMPTYSTRING } = require('./constants.js');
+const {
+  HYPHEN,
+  EMPTYSTRING,
+  LINECOUNT,
+  WORDCOUNT,
+  CHARCOUNT
+} = require('./constants.js');
 
 const optionsMapping = {
-  '-l': 'lineCount',
-  '-w': 'wordCount',
-  '-c': 'charCount'
+  '-l': LINECOUNT,
+  '-w': WORDCOUNT,
+  '-c': CHARCOUNT
 };
 
 const filterOptions = function(args) {
