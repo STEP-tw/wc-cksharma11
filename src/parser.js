@@ -1,16 +1,9 @@
 const { SPACE, HYPHEN, EMPTYSTRING } = require('./constants.js');
 
-const mapOptions = function(option) {
-  const optionsMapping = {
-    '-l': 'lineCount',
-    '-w': 'wordCount',
-    '-c': 'charCount'
-  };
-  return optionsMapping[option];
-};
-
-const joinAndSplitBySpace = function(text) {
-  return text.join(SPACE).split(SPACE);
+const optionsMapping = {
+  '-l': 'lineCount',
+  '-w': 'wordCount',
+  '-c': 'charCount'
 };
 
 const filterOptions = function(args) {
@@ -38,10 +31,9 @@ const filterFilenames = function(args) {
 };
 
 const parse = function(args) {
-  const separatedArgs = joinAndSplitBySpace(args);
-  const filenames = filterFilenames(separatedArgs);
-  const options = filterOptions(separatedArgs).map(option => {
-    return mapOptions(option);
+  const filenames = filterFilenames(args);
+  const options = filterOptions(args).map(option => {
+    return optionsMapping[option];
   });
 
   return { filenames, options };
