@@ -24,11 +24,11 @@ const multipleFileFormatter = function(result, options) {
   return allCounts.join(NEWLINE);
 };
 
-const sumCounts = function(count1, count2) {
+const sumCounts = function(fileOneDetails, fileTwoDetails) {
   return {
-    lineCount: count1.lineCount + count2.lineCount,
-    wordCount: count1.wordCount + count2.wordCount,
-    charCount: count1.charCount + count2.charCount,
+    lineCount: fileOneDetails.lineCount + fileTwoDetails.lineCount,
+    wordCount: fileOneDetails.wordCount + fileTwoDetails.wordCount,
+    charCount: fileOneDetails.charCount + fileTwoDetails.charCount,
     filename: TOTAL
   };
 };
