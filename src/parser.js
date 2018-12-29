@@ -14,12 +14,8 @@ const optionsMapping = {
 
 const filterOptions = function(args) {
   const options = args.filter(arg => arg.startsWith(HYPHEN));
-  if (options.length == 1) {
-    return extractCombinedOptions(options);
-  }
-  if (options.length == 0) {
-    return getDefaultOptions();
-  }
+  if (options.length == 1) return extractCombinedOptions(options);
+  if (options.length == 0) return getDefaultOptions();
   return options;
 };
 
