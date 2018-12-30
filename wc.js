@@ -6,10 +6,10 @@ const { parse } = require('./src/parser.js');
 const main = function() {
   const { filenames, options } = parse(process.argv.slice(2));
   const formatter = getFormatter(filenames);
-  const result = wc(filenames, fs);
-  const allCounts = formatter(result, options);
+  const counts = wc(filenames, fs);
+  const formattedResult = formatter(counts, options);
 
-  console.log(allCounts);
+  console.log(formattedResult);
 };
 
 main();
