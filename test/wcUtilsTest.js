@@ -1,5 +1,6 @@
 const assert = require('assert');
-const { wc } = require('../src/wcUtils.js');
+const { wc, formatWcResult } = require('../src/wcUtils.js');
+const { LINECOUNT, WORDCOUNT, CHARCOUNT } = require('../src/constants');
 
 const mockReader = function(expectedFiles) {
   return function(actualPath) {
@@ -56,5 +57,21 @@ describe('wc', () => {
     const actualOutput = wc(['textFile', 'numberFile'], fs);
 
     assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe('formatWcResult', () => {
+  const file = { numbersFile: '1\n2\n', textFile: 'A\nB\n' };
+  const readFileSync = mockReader(file);
+  const fs = { readFileSync: readFileSync };
+  describe('default options', () => {
+    it('should return line,  word and character count with filename for single file', () => {
+      const filenames = ['numbersFile'];
+      const options = [LINECOUNT, WORDCOUNT, CHARCOUNT];
+      const actualOutput = formatWcResult({ filenames, options }, fs);
+      const expectedOutput = '\t2\t2\t4\tnumbersFile';
+
+      assert.equal(actualOutput, expectedOutput);
+    });
   });
 });

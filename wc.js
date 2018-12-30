@@ -1,15 +1,11 @@
 const fs = require('fs');
-const { wc } = require('./src/lib.js');
-const { getFormatter } = require('./src/format.js');
+const { formatWcResult } = require('./src/wcUtils.js');
 const { parse } = require('./src/parser.js');
 
 const main = function() {
-  const { filenames, options } = parse(process.argv.slice(2));
-  const formatter = getFormatter(filenames);
-  const counts = wc(filenames, fs);
-  const formattedResult = formatter(counts, options);
-
-  console.log(formattedResult);
+  const parsedInputs = parse(process.argv.slice(2));
+  const result = formatWcResult(parsedInputs, fs);
+  console.log(result);
 };
 
 main();

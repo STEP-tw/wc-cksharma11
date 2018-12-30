@@ -1,4 +1,5 @@
 const { NEWLINE, EMPTYSTRING, UTF8 } = require('./constants.js');
+const { getFormatter } = require('./format.js');
 
 const getLineCount = function(content) {
   return content.split(NEWLINE).length - 1;
@@ -31,6 +32,13 @@ const wc = function(filenames, fs) {
   });
 };
 
+const formatWcResult = function({ filenames, options }, fs) {
+  const formatter = getFormatter(filenames);
+  const counts = wc(filenames, fs);
+  return formatter(counts, options);
+};
+
 module.exports = {
-  wc
+  wc,
+  formatWcResult
 };
