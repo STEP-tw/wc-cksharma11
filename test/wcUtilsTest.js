@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { wc } = require('../src/lib.js');
+const { wc } = require('../src/wcUtils.js');
 
 const mockReader = function(expectedFiles) {
   return function(actualPath) {
